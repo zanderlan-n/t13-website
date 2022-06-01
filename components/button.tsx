@@ -6,13 +6,13 @@ export enum ButtonTypes {
 }
 interface Props {
   label: string;
-  action: () => void;
+  onClick: () => void;
   type?: ButtonTypes;
 }
 
-const Button = ({ label, action, type = ButtonTypes.Primary }: Props) => {
+const Button = ({ label, onClick, type = ButtonTypes.Primary }: Props) => {
   return (
-    <StyledButton type={type} onClick={action}>
+    <StyledButton type={type} onClick={onClick}>
       {label}
     </StyledButton>
   );
@@ -23,8 +23,15 @@ const StyledButton = styled.button<any>`
   padding: 0.5rem 1rem;
   border-radius: 5px;
   border: none;
-  color: ${(props) => (props.type === ButtonTypes.Primary ? "#FFF" : props.theme.primary)};
-  background-color: ${(props) => (props.type === ButtonTypes.Primary ? props.theme.primary : props.theme.secondary)};
+  height: fit-content;
+
+  width: fit-content;
+  color: ${(props) =>
+    props.type === ButtonTypes.Primary ? "#FFF" : props.theme.primary};
+  background-color: ${(props) =>
+    props.type === ButtonTypes.Primary
+      ? props.theme.primary
+      : props.theme.secondary};
 `;
 
 export default Button;
